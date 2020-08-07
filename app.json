@@ -1,0 +1,12 @@
+{
+  "name": "weldm8-mobile",
+  "displayName": "weldm8-mobile",
+  "expo": {
+    "name": "weldm8-mobile",
+    "slug": "weldm8-mobile",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
