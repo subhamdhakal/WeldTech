@@ -1,0 +1,6 @@
+export const PERFORM_LOGIN = "PERFORM_LOGIN";
+export const LOGIN_SUCCESSFUL = "LOGIN_SUCCESSFUL";
+export const LOGIN_FAILED = "LOGIN_FAILED";
+export const LOGGING_IN = "LOGGING_IN";
+export const DATA_LOADED = "DATA_LOADED";
+export const TOGGLE_DATA_STATUS = "TOGGLE_DATA_STATUS";

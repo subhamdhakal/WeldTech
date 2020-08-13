@@ -14,6 +14,33 @@
 		3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */; };
 		96905EF65AED1B983A6B3ABC /* libPods-weldm8mobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 58EEBF8E8E6FB1BC6CAF49B5 /* libPods-weldm8mobile.a */; };
 		BB2F792D24A3F905000567C9 /* Expo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2F792C24A3F905000567C9 /* Expo.plist */; };
+		426B99CAC9A04B85A21F0779 /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4847D28121DA4272A598E1C2 /* AntDesign.ttf */; };
+		1A75FBF5A5CF4B3E9D95CEFD /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3217D8D6BDCA404EA57CA2AC /* Entypo.ttf */; };
+		92ECA5FC639F4B87A99467F2 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 878A10379AA14B48B174C8D0 /* EvilIcons.ttf */; };
+		FFB98611A02E44DDB3D883E1 /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6C5DD91F3EB542BB98985F44 /* Feather.ttf */; };
+		5DAD9BDF90E54DEBBB8625C9 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 244E4BEA1DA4433AA0C15058 /* FontAwesome.ttf */; };
+		18E7420F7E9344E48AEACF73 /* FontAwesome5_Brands.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0585D8390E7E4BC2AFD7387F /* FontAwesome5_Brands.ttf */; };
+		18DA97A023F1444DB2C05402 /* FontAwesome5_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63032B9036CC4D3D99C2704F /* FontAwesome5_Regular.ttf */; };
+		CFCAF1D822A545ADBF253E45 /* FontAwesome5_Solid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E9E7FECC75C34910B7CBDDF0 /* FontAwesome5_Solid.ttf */; };
+		D1E2B2468D8E483091BF9919 /* Fontisto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC4A5FA46A514E74A960A003 /* Fontisto.ttf */; };
+		BA860D85728B4E1EB09BDFE2 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D25CE4801E034368A0EA343E /* Foundation.ttf */; };
+		BFE16A8D0E074CDCB7BCCA94 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FA3606F3A0204E7992C160CB /* Ionicons.ttf */; };
+		123C5B46225F4F69B2E73C7F /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7068CF0CE8B84FC8AFB63D71 /* MaterialCommunityIcons.ttf */; };
+		2F40CA94BB9743E2A48B3041 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 657895498C0E4424BE590D0E /* MaterialIcons.ttf */; };
+		F3220C552EF54E1183E11B1D /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18945C58BE1A47C39E2123C2 /* Octicons.ttf */; };
+		278E58EDE64A4A38B4B790BC /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E05C5B76C19E4ABFBA580D95 /* SimpleLineIcons.ttf */; };
+		A135263BA4074769AB57B85B /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F08D99D115B840428081DE3B /* Zocial.ttf */; };
+		231DE9534C2E4FF6ACBEE63F /* home-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 97253FA686654E0588DAE80D /* home-icon.png */; };
+		F34E37E287A24F5093840AC5 /* mig-welding-icon-01.png in Resources */ = {isa = PBXBuildFile; fileRef = AE3B05E648D84601A35B9105 /* mig-welding-icon-01.png */; };
+		70D587B4169240C0A84FEA35 /* mig-welding-icon-02.png in Resources */ = {isa = PBXBuildFile; fileRef = F1F274C9A03246699B001DBC /* mig-welding-icon-02.png */; };
+		F44FC291A0C9437D875F32CC /* settings-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 62D9BCF44438418B89AF43D1 /* settings-icon.png */; };
+		00A9D0CA91D34F2E9629386B /* share-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7550F9EACCED42DAAE1BEFE5 /* share-icon.png */; };
+		BB633119103F46BE9CB66C1B /* stick-welding-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = AE45BCE15EA94C87AAE21C99 /* stick-welding-icon.png */; };
+		6749204A75CC49ED9CE142A7 /* tig-welding-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = F92B5D549A2F4638A2B20582 /* tig-welding-icon.png */; };
+		91BEF6E3BA54469BAA539A2E /* videos-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 77CD47D2FB8A498F9A00351D /* videos-icon.png */; };
+		71BCB7650AE3498C9C315939 /* weldtech-app-top-banner.png in Resources */ = {isa = PBXBuildFile; fileRef = ADDA81FA85C840FEB96B6EF2 /* weldtech-app-top-banner.png */; };
+		43B14417F0BB442FAA0D3B74 /* weldtech-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E03CACA300C4DD4B7159F40 /* weldtech-logo.png */; };
+		68A88783D6F345D3A4CC93E1 /* HelveticaNowDisplay-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6BBD4E2E6ABA40029568945E /* HelveticaNowDisplay-ExtraBold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +59,33 @@
 		BB2F792C24A3F905000567C9 /* Expo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Expo.plist; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
+		4847D28121DA4272A598E1C2 /* AntDesign.ttf */ = {isa = PBXFileReference; name = "AntDesign.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		3217D8D6BDCA404EA57CA2AC /* Entypo.ttf */ = {isa = PBXFileReference; name = "Entypo.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		878A10379AA14B48B174C8D0 /* EvilIcons.ttf */ = {isa = PBXFileReference; name = "EvilIcons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		6C5DD91F3EB542BB98985F44 /* Feather.ttf */ = {isa = PBXFileReference; name = "Feather.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		244E4BEA1DA4433AA0C15058 /* FontAwesome.ttf */ = {isa = PBXFileReference; name = "FontAwesome.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		0585D8390E7E4BC2AFD7387F /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; name = "FontAwesome5_Brands.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		63032B9036CC4D3D99C2704F /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; name = "FontAwesome5_Regular.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		E9E7FECC75C34910B7CBDDF0 /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; name = "FontAwesome5_Solid.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		EC4A5FA46A514E74A960A003 /* Fontisto.ttf */ = {isa = PBXFileReference; name = "Fontisto.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		D25CE4801E034368A0EA343E /* Foundation.ttf */ = {isa = PBXFileReference; name = "Foundation.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		FA3606F3A0204E7992C160CB /* Ionicons.ttf */ = {isa = PBXFileReference; name = "Ionicons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		7068CF0CE8B84FC8AFB63D71 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; name = "MaterialCommunityIcons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		657895498C0E4424BE590D0E /* MaterialIcons.ttf */ = {isa = PBXFileReference; name = "MaterialIcons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		18945C58BE1A47C39E2123C2 /* Octicons.ttf */ = {isa = PBXFileReference; name = "Octicons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		E05C5B76C19E4ABFBA580D95 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; name = "SimpleLineIcons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		F08D99D115B840428081DE3B /* Zocial.ttf */ = {isa = PBXFileReference; name = "Zocial.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		97253FA686654E0588DAE80D /* home-icon.png */ = {isa = PBXFileReference; name = "home-icon.png"; path = "../src/assets/home-icon.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		AE3B05E648D84601A35B9105 /* mig-welding-icon-01.png */ = {isa = PBXFileReference; name = "mig-welding-icon-01.png"; path = "../src/assets/mig-welding-icon-01.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		F1F274C9A03246699B001DBC /* mig-welding-icon-02.png */ = {isa = PBXFileReference; name = "mig-welding-icon-02.png"; path = "../src/assets/mig-welding-icon-02.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		62D9BCF44438418B89AF43D1 /* settings-icon.png */ = {isa = PBXFileReference; name = "settings-icon.png"; path = "../src/assets/settings-icon.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		7550F9EACCED42DAAE1BEFE5 /* share-icon.png */ = {isa = PBXFileReference; name = "share-icon.png"; path = "../src/assets/share-icon.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		AE45BCE15EA94C87AAE21C99 /* stick-welding-icon.png */ = {isa = PBXFileReference; name = "stick-welding-icon.png"; path = "../src/assets/stick-welding-icon.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		F92B5D549A2F4638A2B20582 /* tig-welding-icon.png */ = {isa = PBXFileReference; name = "tig-welding-icon.png"; path = "../src/assets/tig-welding-icon.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		77CD47D2FB8A498F9A00351D /* videos-icon.png */ = {isa = PBXFileReference; name = "videos-icon.png"; path = "../src/assets/videos-icon.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		ADDA81FA85C840FEB96B6EF2 /* weldtech-app-top-banner.png */ = {isa = PBXFileReference; name = "weldtech-app-top-banner.png"; path = "../src/assets/weldtech-app-top-banner.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		2E03CACA300C4DD4B7159F40 /* weldtech-logo.png */ = {isa = PBXFileReference; name = "weldtech-logo.png"; path = "../src/assets/weldtech-logo.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		6BBD4E2E6ABA40029568945E /* HelveticaNowDisplay-ExtraBold.ttf */ = {isa = PBXFileReference; name = "HelveticaNowDisplay-ExtraBold.ttf"; path = "../src/assets/fonts/HelveticaNowDisplay-ExtraBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +141,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				D65327D7A22EEC0BE12398D9 /* Pods */,
+				F623886F9C35443A86991211 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -118,6 +173,41 @@
 			);
 			path = Pods;
 			sourceTree = "<group>";
+		};
+		F623886F9C35443A86991211 /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+				4847D28121DA4272A598E1C2 /* AntDesign.ttf */,
+				3217D8D6BDCA404EA57CA2AC /* Entypo.ttf */,
+				878A10379AA14B48B174C8D0 /* EvilIcons.ttf */,
+				6C5DD91F3EB542BB98985F44 /* Feather.ttf */,
+				244E4BEA1DA4433AA0C15058 /* FontAwesome.ttf */,
+				0585D8390E7E4BC2AFD7387F /* FontAwesome5_Brands.ttf */,
+				63032B9036CC4D3D99C2704F /* FontAwesome5_Regular.ttf */,
+				E9E7FECC75C34910B7CBDDF0 /* FontAwesome5_Solid.ttf */,
+				EC4A5FA46A514E74A960A003 /* Fontisto.ttf */,
+				D25CE4801E034368A0EA343E /* Foundation.ttf */,
+				FA3606F3A0204E7992C160CB /* Ionicons.ttf */,
+				7068CF0CE8B84FC8AFB63D71 /* MaterialCommunityIcons.ttf */,
+				657895498C0E4424BE590D0E /* MaterialIcons.ttf */,
+				18945C58BE1A47C39E2123C2 /* Octicons.ttf */,
+				E05C5B76C19E4ABFBA580D95 /* SimpleLineIcons.ttf */,
+				F08D99D115B840428081DE3B /* Zocial.ttf */,
+				97253FA686654E0588DAE80D /* home-icon.png */,
+				AE3B05E648D84601A35B9105 /* mig-welding-icon-01.png */,
+				F1F274C9A03246699B001DBC /* mig-welding-icon-02.png */,
+				62D9BCF44438418B89AF43D1 /* settings-icon.png */,
+				7550F9EACCED42DAAE1BEFE5 /* share-icon.png */,
+				AE45BCE15EA94C87AAE21C99 /* stick-welding-icon.png */,
+				F92B5D549A2F4638A2B20582 /* tig-welding-icon.png */,
+				77CD47D2FB8A498F9A00351D /* videos-icon.png */,
+				ADDA81FA85C840FEB96B6EF2 /* weldtech-app-top-banner.png */,
+				2E03CACA300C4DD4B7159F40 /* weldtech-logo.png */,
+				6BBD4E2E6ABA40029568945E /* HelveticaNowDisplay-ExtraBold.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 
@@ -182,6 +272,33 @@
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */,
+				426B99CAC9A04B85A21F0779 /* AntDesign.ttf in Resources */,
+				1A75FBF5A5CF4B3E9D95CEFD /* Entypo.ttf in Resources */,
+				92ECA5FC639F4B87A99467F2 /* EvilIcons.ttf in Resources */,
+				FFB98611A02E44DDB3D883E1 /* Feather.ttf in Resources */,
+				5DAD9BDF90E54DEBBB8625C9 /* FontAwesome.ttf in Resources */,
+				18E7420F7E9344E48AEACF73 /* FontAwesome5_Brands.ttf in Resources */,
+				18DA97A023F1444DB2C05402 /* FontAwesome5_Regular.ttf in Resources */,
+				CFCAF1D822A545ADBF253E45 /* FontAwesome5_Solid.ttf in Resources */,
+				D1E2B2468D8E483091BF9919 /* Fontisto.ttf in Resources */,
+				BA860D85728B4E1EB09BDFE2 /* Foundation.ttf in Resources */,
+				BFE16A8D0E074CDCB7BCCA94 /* Ionicons.ttf in Resources */,
+				123C5B46225F4F69B2E73C7F /* MaterialCommunityIcons.ttf in Resources */,
+				2F40CA94BB9743E2A48B3041 /* MaterialIcons.ttf in Resources */,
+				F3220C552EF54E1183E11B1D /* Octicons.ttf in Resources */,
+				278E58EDE64A4A38B4B790BC /* SimpleLineIcons.ttf in Resources */,
+				A135263BA4074769AB57B85B /* Zocial.ttf in Resources */,
+				231DE9534C2E4FF6ACBEE63F /* home-icon.png in Resources */,
+				F34E37E287A24F5093840AC5 /* mig-welding-icon-01.png in Resources */,
+				70D587B4169240C0A84FEA35 /* mig-welding-icon-02.png in Resources */,
+				F44FC291A0C9437D875F32CC /* settings-icon.png in Resources */,
+				00A9D0CA91D34F2E9629386B /* share-icon.png in Resources */,
+				BB633119103F46BE9CB66C1B /* stick-welding-icon.png in Resources */,
+				6749204A75CC49ED9CE142A7 /* tig-welding-icon.png in Resources */,
+				91BEF6E3BA54469BAA539A2E /* videos-icon.png in Resources */,
+				71BCB7650AE3498C9C315939 /* weldtech-app-top-banner.png in Resources */,
+				43B14417F0BB442FAA0D3B74 /* weldtech-logo.png in Resources */,
+				68A88783D6F345D3A4CC93E1 /* HelveticaNowDisplay-ExtraBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
