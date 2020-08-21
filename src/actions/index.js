@@ -5,7 +5,7 @@ import {
   loginSuccessful,
   loginFailed,
 } from "../reducer/loginReducer";
-import { dataAvailable } from "../reducer/dataReducer";
+import { dataAvailable, putDate } from "../reducer/dataReducer";
 
 export const callPostsApi = (token) => {
   return axios
@@ -32,12 +32,6 @@ export const login = (username, password, rememberMe = false) => {
         rememberMe,
       })
       .then((response) => {
-        // AsyncStorage.setItem("userToken", response.data["jwtToken"]).then(
-        //   () => {
-        //     resolve(response);
-        //     AsyncStorage.setItem("userData", response.data["users"]);
-        //   }
-        // );
         console.log(response.data);
 
         return callPostsApi(response.data).then(
@@ -45,7 +39,10 @@ export const login = (username, password, rememberMe = false) => {
             // console.log("khali chaina aba", response.data);
             const endTime = new Date().getTime();
             const runtime = endTime - startTime;
-            console.log("run time ################# " + runtime.toString());
+            // var time = new Date().getTime();
+            var date = new Date();
+            console.log("run time ################# " + date.toString());
+            dispatch(putDate(date.toLocaleString("en-US")));
             dispatch(dataAvailable(response.data));
             // Reducers may handle this to show the data and reset isFetching
           },

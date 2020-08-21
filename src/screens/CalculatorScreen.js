@@ -7,11 +7,14 @@ import {
   Dimensions,
   TouchableWithoutFeedback,
   Picker,
+  ScrollView,
 } from "react-native";
+import { bindActionCreators } from "redux";
 import Icon from "react-native-vector-icons/FontAwesome";
 import RNPicker from "./../components/RNModalPicker";
 import dataReducer from "./../reducer/dataReducer";
 import { connect } from "react-redux";
+import { loadParticularElectrodeData } from "../reducer/dataReducer";
 
 class CalculatorScreen extends Component {
   state = {
@@ -20,18 +23,35 @@ class CalculatorScreen extends Component {
   };
   constructor(props) {
     super(props);
+    this.forceUpdateHandler = this.forceUpdateHandler.bind(this);
+
     this.state = {
       placeHolderTextMaterial: "Please Select Material",
       placeHolderTextElectrode: "Please Select Electrode",
-      selectedTextMaterial: "",
-      selectedTextElectrode: "",
+      selectedTextMaterial: "Please Select Material",
+      selectedTextElectrode: "Please Select Electrode",
+      calculateButtonEnabled: false,
+      warningTextStatus: false,
     };
+  }
+  checkCalculateButtonState() {}
+  forceUpdateHandler() {
+    this.forceUpdate();
   }
   _selectedValueMaterial(index, item) {
     this.setState({ selectedTextMaterial: item.name });
+    this.setState({
+      selectedTextElectrode: "Please Select Electrode",
+      placeHolderTextElectrode: "Please Select Electrode",
+    });
+    this.forceUpdateHandler;
+    this.props.actions.loadParticularElectrodeData(item.electrodes);
   }
   _selectedValueElectrode(index, item) {
-    this.setState({ selectedTextElectrode: item.name });
+    this.setState({
+      selectedTextElectrode: item.name,
+    });
+    this.enableWarningText(false);
   }
 
   componentDidMount() {
@@ -45,6 +65,11 @@ class CalculatorScreen extends Component {
     this.setState({
       imgWidth: screenWidth,
       imgHeight: imageHeight,
+    });
+  }
+  enableWarningText(status) {
+    this.setState({
+      enableWarningText: status,
     });
   }
   render() {
@@ -77,8 +102,12 @@ class CalculatorScreen extends Component {
                 <Text style={styles.backText}>Back</Text>
               </View>
             </TouchableWithoutFeedback>
-            <Text style={styles.bannerTextStyle} numberOfLines={2}>
-              STICK WELDING CALCULATOR
+            <Text
+              style={styles.bannerTextStyle}
+              numberOfLines={3}
+              textBreakStrategy={"simple"}
+            >
+              {this.props.pageTitle}
             </Text>
             <View>
               <TouchableWithoutFeedback
@@ -111,23 +140,17 @@ class CalculatorScreen extends Component {
                 }}
               >
                 <RNPicker
-                  dataSource={this.props.data["materials"]}
-                  dummyDataSource={this.props.data["materials"]}
+                  dataSource={this.props.materialArray}
+                  dummyDataSource={this.props.materialArray}
                   defaultValue={false}
                   pickerTitle={"Select Material"}
                   showSearchBar={true}
                   disablePicker={false}
-                  changeAnimation={"none"}
+                  changeAnimation={"fade"}
                   searchBarPlaceHolder={"Search"}
                   showPickerTitle={true}
-                  // searchBarContainerStyle={this.props.searchBarContainerStyle}
-                  // pickerStyle={styles.pickerStyle}
-                  // pickerItemTextStyle={Styles.listTextViewStyle}
-                  selectedLabel={this.state.selectedTextMaterial}
                   placeHolderLabel={this.state.placeHolderTextMaterial}
-                  // selectLabelTextStyle={Styles.selectLabelTextStyle}
-                  // placeHolderTextStyle={Styles.placeHolderTextStyle}
-                  // dropDownImageStyle={Styles.dropDownImageStyle}
+                  selectedLabel={this.state.selectedTextMaterial}
                   dropDownImage={require("../assets/icons/ic_drop_down.png")}
                   selectedValue={(index, item) =>
                     this._selectedValueMaterial(index, item)
@@ -144,25 +167,17 @@ class CalculatorScreen extends Component {
                 }}
               >
                 <RNPicker
-                  dataSource={this.props.data["materials"][0]["electrodes"]}
-                  dummyDataSource={
-                    this.props.data["materials"][0]["electrodes"]
-                  }
+                  dataSource={this.props.electrodeArray}
+                  dummyDataSource={this.props.electrodeArray}
                   defaultValue={false}
                   pickerTitle={"Select Electrode"}
                   showSearchBar={true}
                   disablePicker={false}
-                  changeAnimation={"none"}
                   searchBarPlaceHolder={"Search"}
                   showPickerTitle={true}
-                  // searchBarContainerStyle={this.props.searchBarContainerStyle}
-                  // pickerStyle={styles.pickerStyle}
-                  // pickerItemTextStyle={Styles.listTextViewStyle}
-                  selectedLabel={this.state.selectedTextElectrode}
+                  changeAnimation={"fade"}
                   placeHolderLabel={this.state.placeHolderTextElectrode}
-                  // selectLabelTextStyle={Styles.selectLabelTextStyle}
-                  // placeHolderTextStyle={Styles.placeHolderTextStyle}
-                  // dropDownImageStyle={Styles.dropDownImageStyle}
+                  selectedLabel={this.state.selectedTextElectrode}
                   dropDownImage={require("../assets/icons/ic_drop_down.png")}
                   selectedValue={(index, item) =>
                     this._selectedValueElectrode(index, item)
@@ -172,12 +187,83 @@ class CalculatorScreen extends Component {
             </View>
           </View>
 
+          {this.state.enableWarningText ? (
+            <Text
+              style={{
+                color: "red",
+                fontFamily: "HelveticaNowDisplay-ExtraBold",
+                fontSize: 10,
+              }}
+            >
+              * Please select both welding type and electorde type
+            </Text>
+          ) : (
+            <Text
+              style={{
+                color: "red",
+                fontFamily: "HelveticaNowDisplay-ExtraBold",
+                fontSize: 10,
+              }}
+            />
+          )}
+
           <TouchableWithoutFeedback
-            onPress={() => this.props.navigation.navigate("SuggestionScreen")}
+            // disabled={
+            //   this.state.selectedTextElectrode.trim() == "" ||
+            //   this.state.selectedTextMaterial.trim() == "" ||
+            //   this.state.selectedTextElectrode === "Please Select Electrode"
+            // }
+            onPress={() =>
+              this.state.selectedTextElectrode.trim() == "" ||
+              this.state.selectedTextMaterial.trim() == "" ||
+              this.state.selectedTextElectrode === "Please Select Electrode"
+                ? this.enableWarningText(true)
+                : this.props.navigation.navigate("SuggestionScreen")
+            }
           >
-            <View style={styles.calculateButton}>
-              <Text style={styles.textCalculate}>CALCULATE</Text>
-              <Icon name="chevron-right" size={18} color="#001B33" />
+            <View
+              style={{
+                flexDirection: "row",
+                backgroundColor:
+                  this.state.selectedTextElectrode.trim() == "" ||
+                  this.state.selectedTextMaterial.trim() == "" ||
+                  this.state.selectedTextElectrode === "Please Select Electrode"
+                    ? "#D3D3D3"
+                    : "#FEE203",
+                alignItems: "center",
+                justifyContent: "center",
+                padding: 18,
+                width: 265,
+                marginTop: 20,
+              }}
+            >
+              <Text
+                style={{
+                  fontFamily: "HelveticaNowDisplay-ExtraBold",
+                  fontSize: 16,
+                  color:
+                    this.state.selectedTextElectrode.trim() == "" ||
+                    this.state.selectedTextMaterial.trim() == "" ||
+                    this.state.selectedTextElectrode ===
+                      "Please Select Electrode"
+                      ? "#FFF"
+                      : "#001426",
+                  padding: 4,
+                }}
+              >
+                CALCULATE
+              </Text>
+              <Icon
+                name="chevron-right"
+                size={18}
+                color={
+                  this.state.selectedTextElectrode.trim() == "" ||
+                  this.state.selectedTextMaterial.trim() == "" ||
+                  this.state.selectedTextElectrode === "Please Select Electrode"
+                    ? "#FFF"
+                    : "#001426"
+                }
+              />
             </View>
           </TouchableWithoutFeedback>
         </View>
@@ -187,16 +273,20 @@ class CalculatorScreen extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { data: state.dataReducer.materialArray };
+  return {
+    electrodeArray: state.dataReducer.electrodeArray,
+    materialArray: state.dataReducer.materialArray,
+    pageTitle: state.dataReducer.pageTitle,
+  };
 };
 
-// function mapDispatchToProps(dispatch) {
-//   return {
-//     actions: bindActionCreators({ menuItemClicked }, dispatch),
-//   };
-// }
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators({ loadParticularElectrodeData }, dispatch),
+  };
+}
 
-export default connect(mapStateToProps, null)(CalculatorScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(CalculatorScreen);
 
 const styles = StyleSheet.create({
   main: {
@@ -209,16 +299,18 @@ const styles = StyleSheet.create({
     width: "100%",
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-evenly",
+    justifyContent: "space-between",
+    paddingLeft: 12,
+    paddingRight: 12,
     paddingTop: 20,
     paddingBottom: 20,
   },
   bannerTextStyle: {
     fontSize: 18,
-    width: 200,
     fontFamily: "HelveticaNowDisplay-ExtraBold",
     color: "#001B33",
     textAlign: "center",
+    width: 200,
   },
   image: {
     width: "100%",
@@ -238,15 +330,14 @@ const styles = StyleSheet.create({
   },
   textWeldingType: {
     fontSize: 16,
-    width: 166,
     marginLeft: 36,
     marginRight: 18,
     fontFamily: "HelveticaNowDisplay-ExtraBold",
     color: "#001426",
   },
   backText: {
-    fontFamily: "HelveticaNowDisplay-ExtraBold",
-    fontSize: 18,
+    fontFamily: "HelveticaNowDisplay-Regular",
+    fontSize: 14,
     color: "#001B33",
   },
   backTouchable: {
@@ -257,18 +348,6 @@ const styles = StyleSheet.create({
     height: 28,
     width: 37,
   },
-  calculateButton: {
-    flexDirection: "row",
-    backgroundColor: "#FEE203",
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 18,
-    width: 265,
-  },
-  textCalculate: {
-    fontFamily: "HelveticaNowDisplay-ExtraBold",
-    fontSize: 16,
-    color: "#001B33",
-    padding: 4,
-  },
+  calculateButton: {},
+  textCalculate: {},
 });

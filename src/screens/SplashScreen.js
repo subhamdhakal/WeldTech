@@ -14,10 +14,32 @@ import { connect } from "react-redux";
 import { login } from "../actions/index";
 import * as Progress from "react-native-progress";
 import { StackActions } from "@react-navigation/native";
+import { NetworkCheck } from "./../utils/NetworkUtils";
+import NetInfo from "@react-native-community/netinfo";
 
 class SplashScreen extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      imgWidth: 0,
+      imgHeight: 0,
+      isConnected: false,
+    };
+    this.unsubscribe = NetInfo.addEventListener((state) => {
+      state.isInternetReachable
+        ? (this.props.actions.login("weldm8-superadmin", "User@123!@#"),
+          this.setState({
+            isConnected: true,
+          }))
+        : this.setState({
+            isConnected: false,
+          });
+    });
+  }
+  componentWillUnmount() {
+    this.unsubscribe();
+  }
   componentDidMount() {
-    this.props.actions.login("weldm8-superadmin", "User@123!@#");
     let source = Image.resolveAssetSource(
       require("../assets/images/weldtech-splash-screen.jpg")
     );
@@ -25,10 +47,6 @@ class SplashScreen extends Component {
     const screenWidth = Dimensions.get("window").width;
     const scaleFactor = source.width / screenWidth;
     const imageHeight = source.height / scaleFactor;
-    this.setState({
-      imgWidth: screenWidth,
-      imgHeight: imageHeight,
-    });
   }
   render() {
     this.props.dataStatus
@@ -43,12 +61,40 @@ class SplashScreen extends Component {
           source={require("../assets/images/weldtech-splash-screen.jpg")}
         >
           <View>
-            <Progress.Bar
-              indeterminate={true}
-              width={null}
-              height={10}
-              color={"#FEE203"}
-            />
+            {this.state.isConnected ? (
+              <Progress.Bar
+                indeterminate={true}
+                width={null}
+                height={10}
+                color={"#FEE203"}
+              />
+            ) : this.props.isDataAvailable ? (
+              this.props.navigation.dispatch(StackActions.replace("HomeScreen"))
+            ) : (
+              <View
+                style={{
+                  alignContent: "center",
+                  alignItems: "center",
+                  marginTop: 16,
+                }}
+              >
+                <Image
+                  style={{}}
+                  source={require("../assets/images/no-wifi.png")}
+                />
+                <Text
+                  style={{
+                    marginTop: 8,
+                    fontSize: 18,
+                    fontFamily: "HelveticaNowDisplay-ExtraBold",
+                    color: "#FEE203",
+                    alignSelf: "center",
+                  }}
+                >
+                  No internet Connection
+                </Text>
+              </View>
+            )}
           </View>
         </ImageBackground>
         <Image />
@@ -58,7 +104,10 @@ class SplashScreen extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { dataStatus: state.dataReducer.dataStatus };
+  return {
+    dataStatus: state.dataReducer.dataStatus,
+    isDataAvailable: state.dataReducer.isDataAvailable,
+  };
 };
 
 function mapDispatchToProps(dispatch) {
@@ -71,6 +120,9 @@ export default connect(mapStateToProps, mapDispatchToProps)(SplashScreen);
 const styles = StyleSheet.create({
   main: {
     flex: 1,
+    justifyContent: "center",
+    alignContent: "center",
+    alignItems: "center",
   },
   image: {
     flex: 1,

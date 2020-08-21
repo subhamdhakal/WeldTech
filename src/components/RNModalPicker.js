@@ -99,7 +99,7 @@ export default class RNModalPicker extends PureComponent {
               padding: 10,
               color: "#000",
               marginLeft: 10,
-              fontFamily: "HelveticaNowDisplay-ExtraBold",
+              fontFamily: "HelveticaNowDisplay-Regular",
             }}
           >
             {item.name}
@@ -254,7 +254,7 @@ RNModalPicker.defaultProps = {
     width: "99%",
     padding: 10,
     flexDirection: "row",
-    fontFamily: "HelveticaNowDisplay-ExtraBold",
+    fontFamily: "HelveticaNowDisplay-Regular",
   },
   searchBarContainerStyle: {
     marginBottom: 10,
@@ -279,6 +279,7 @@ RNModalPicker.defaultProps = {
     textAlign: "left",
     width: "99%",
     flexDirection: "row",
+    fontFamily: "HelveticaNowDisplay-Regular",
   },
   dropDownImageStyle: {
     marginLeft: 10,
@@ -293,7 +294,7 @@ RNModalPicker.defaultProps = {
     marginLeft: 20,
     marginHorizontal: 10,
     textAlign: "left",
-    fontFamily: "HelveticaNowDisplay-ExtraBold",
+    fontFamily: "HelveticaNowDisplay-Regular",
   },
   pickerStyle: {
     marginLeft: 18,
@@ -437,7 +438,6 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     flex: 1,
     textAlign: I18nManager.isRTL ? "right" : "left",
-    fontFamily: "HelveticaNowDisplay-ExtraBold",
   },
   crossImageStyle: {
     width: 40,
@@ -465,13 +465,13 @@ const styles = StyleSheet.create({
   },
 
   pickerTitleTextStyle: {
-    fontSize: 18,
+    fontSize: 16,
     flex: 1,
     padding: 5,
     marginLeft: 40,
     color: "#000",
     textAlign: "center",
-    fontFamily: "HelveticaNowDisplay-ExtraBold",
+    fontFamily: "HelveticaNowDisplay-Regular",
   },
 });
 
