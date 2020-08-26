@@ -14,7 +14,10 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import RNPicker from "./../components/RNModalPicker";
 import dataReducer from "./../reducer/dataReducer";
 import { connect } from "react-redux";
-import { loadParticularElectrodeData } from "../reducer/dataReducer";
+import {
+  loadParticularElectrodeData,
+  setElectrodeMethodAndHasMultipleMethod,
+} from "../reducer/dataReducer";
 
 class CalculatorScreen extends Component {
   state = {
@@ -48,6 +51,8 @@ class CalculatorScreen extends Component {
     this.props.actions.loadParticularElectrodeData(item.electrodes);
   }
   _selectedValueElectrode(index, item) {
+    this.props.actions.setElectrodeMethodAndHasMultipleMethod(item);
+
     this.setState({
       selectedTextElectrode: item.name,
     });
@@ -107,7 +112,7 @@ class CalculatorScreen extends Component {
               numberOfLines={3}
               textBreakStrategy={"simple"}
             >
-              {this.props.pageTitle}
+              {this.props.pageTitle} CALCULATION
             </Text>
             <View>
               <TouchableWithoutFeedback
@@ -282,7 +287,10 @@ const mapStateToProps = (state) => {
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators({ loadParticularElectrodeData }, dispatch),
+    actions: bindActionCreators(
+      { loadParticularElectrodeData, setElectrodeMethodAndHasMultipleMethod },
+      dispatch
+    ),
   };
 }
 
@@ -306,7 +314,7 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
   },
   bannerTextStyle: {
-    fontSize: 18,
+    fontSize: 14,
     fontFamily: "HelveticaNowDisplay-ExtraBold",
     color: "#001B33",
     textAlign: "center",

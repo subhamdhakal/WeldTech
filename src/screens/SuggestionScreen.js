@@ -7,130 +7,31 @@ import {
   Dimensions,
   TouchableWithoutFeedback,
   ScrollView,
+  FlatList,
 } from "react-native";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { NavigationContainer } from "@react-navigation/native";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 
-function HomeScreen() {
+function TabScreen(props) {
   return (
-    <ScrollView style={styles.detail}>
-      <View style={styles.subDetail}>
-        <Text style={styles.keyText}>Suggested Temperature range:</Text>
-        <Text style={styles.valueText}>130-175</Text>
-      </View>
-      <View style={{ width: "96%" }}></View>
-      <View style={{ flexDirection: "row", width: "96%", marginTop: 8 }}>
-        <View
-          style={{
-            flex: 0.6,
-            padding: 18,
-            shadowOffset: { width: 10, height: 10 },
-            shadowColor: "black",
-            shadowOpacity: 1,
-            marginTop: 8,
-            elevation: 3,
-            backgroundColor: "white",
-            margin: 2,
-          }}
-        >
-          <View style={{}}>
-            <Text style={styles.keyText}>Polarity:</Text>
-            <Text style={styles.valueTextNoWidth}>AC/DCEP</Text>
-          </View>
-          <View>
-            <Text style={styles.keyText}>AC</Text>
-            <Text style={styles.tinyText}>
-              medium weld penetration (can be more spatter)
-            </Text>
-          </View>
-          <View>
-            <Text style={styles.keyText}>DCEN</Text>
-            <Text style={styles.tinyText}>
-              DC, Electrode Negative (straight polarity) has the least weld
-              penetration
-            </Text>
-          </View>
-          <View>
-            <Text style={styles.keyText}>DCEN</Text>
-            <Text style={styles.tinyText}>
-              DC, Electrode Negative (straight polarity) has the least weldst
-              penetration
-            </Text>
-          </View>
+    <FlatList
+      data={props.data["descriptions"]}
+      renderItem={({ item, index }) => (
+        <View style={styles.subDetail}>
+          <Text style={styles.keyText}>{item.title}</Text>
+          <Text style={styles.valueText}>{item.detail}</Text>
         </View>
-        <View
-          style={{
-            flex: 0.4,
-            padding: 18,
-            shadowOffset: { width: 10, height: 10 },
-            shadowColor: "black",
-            shadowOpacity: 1,
-            marginTop: 8,
-            elevation: 3,
-            backgroundColor: "white",
-            margin: 2,
-          }}
-        >
-          <View>
-            <Text style={styles.keyText}>DCEN</Text>
-            <Text style={styles.tinyText} numberOfLines={2}>
-              DC, Electrode Negative
-            </Text>
-          </View>
-          <View>
-            <Text style={styles.keyText}>DCEN</Text>
-            <Text style={styles.tinyText}>
-              DC, Electrode Negative DC, Electrode Negative DC, Electrode
-              Negative
-            </Text>
-          </View>
-          <View>
-            <Text style={styles.keyText}>DCEN</Text>
-            <Text style={styles.tinyText}>DC, Electrode Negative</Text>
-          </View>
-          <View>
-            <Text style={styles.keyText}>DCEN</Text>
-            <Text style={styles.tinyText}>DC, Electrode Negative</Text>
-          </View>
-        </View>
-      </View>
-      <View style={styles.subDetail}>
-        <Text style={styles.keyText}>Suggested Temperature range:</Text>
-        <Text style={styles.valueText}>130-175</Text>
-      </View>
-      <View
-        style={{
-          justifyContent: "center",
-          alignContent: "center",
-          alignItems: "center",
-          margin: 8,
-        }}
-      >
-        <Text
-          style={{
-            textAlign: "center",
-            fontFamily: "HelveticaNowDisplay-Regular",
-            fontSize: 10,
-          }}
-        >
-          All suggested settings are approximate. Welds should be tested to
-          comply to your specifications.
-        </Text>
-      </View>
-    </ScrollView>
+      )}
+    />
   );
 }
-function SettingsScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Settings!</Text>
-    </View>
-  );
-}
+
 const Tab = createMaterialTopTabNavigator();
 
-export default class SuggestionScreen extends Component {
+class SuggestionScreen extends Component {
   state = {
     imgWidth: 0,
     imgHeight: 0,
@@ -149,6 +50,12 @@ export default class SuggestionScreen extends Component {
       imgHeight: imageHeight,
     });
   }
+  renderItem = (item) => (
+    <View style={styles.subDetail}>
+      <Text style={styles.keyText}>{item.title}</Text>
+      <Text style={styles.valueText}>{item.detail}</Text>
+    </View>
+  );
   render() {
     return (
       <View style={styles.main}>
@@ -157,13 +64,13 @@ export default class SuggestionScreen extends Component {
             alignItems: "center",
           }}
         >
-          <Image
+          {/* <Image
             style={{
               height: this.state.imgHeight,
               width: this.state.imgWidth,
             }}
             source={require("../assets/icons/weldtech-app-top-banner.png")}
-          />
+          /> */}
           <View style={styles.subComponent}>
             <TouchableWithoutFeedback
               onPress={() => this.props.navigation.pop()}
@@ -183,7 +90,7 @@ export default class SuggestionScreen extends Component {
               numberOfLines={3}
               textBreakStrategy="simple"
             >
-              STICK WELDING SUGGESTION
+              {this.props.pageTitle} SUGGESTION
             </Text>
             <View>
               <TouchableWithoutFeedback
@@ -197,20 +104,70 @@ export default class SuggestionScreen extends Component {
             </View>
           </View>
         </View>
-        <Tab.Navigator>
-          <Tab.Screen
-            name="Homehbaschjbascbbsacjhsabchajnaskjcnbasjkcb"
-            component={HomeScreen}
-          />
-          <Tab.Screen
-            name="Settingsab sjchbabscjhasbcjhasbcjknaskjnjasbchj"
-            component={SettingsScreen}
-          />
-        </Tab.Navigator>
+
+        {!this.props.multipleMethods ? (
+          <View style={styles.detail}>
+            <FlatList
+              data={this.props.electrodeMethods[0]["descriptions"]}
+              renderItem={({ item, index }) => this.renderItem(item)}
+              keyExtractor={(item) => item.id}
+            />
+            <View
+              style={{
+                justifyContent: "center",
+                alignContent: "center",
+                alignItems: "center",
+                margin: 8,
+              }}
+            >
+              <Text
+                style={{
+                  textAlign: "center",
+                  fontFamily: "HelveticaNowDisplay-Regular",
+                  fontSize: 10,
+                }}
+              >
+                All suggested settings are approximate. Welds should be tested
+                to comply to your specifications.
+              </Text>
+            </View>
+          </View>
+        ) : (
+          <Tab.Navigator>
+            <Tab.Screen
+              name={this.props.electrodeMethods[0]["methodName"]}
+              children={() => (
+                <TabScreen data={this.props.electrodeMethods[0]} />
+              )}
+            />
+            <Tab.Screen
+              name={this.props.electrodeMethods[1]["methodName"]}
+              children={() => (
+                <TabScreen data={this.props.electrodeMethods[1]} />
+              )}
+            />
+          </Tab.Navigator>
+        )}
       </View>
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    electrodeMethods: state.dataReducer.electrodeMethods,
+    multipleMethods: state.dataReducer.multipleMethods,
+    pageTitle: state.dataReducer.pageTitle,
+  };
+};
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators({}, dispatch),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SuggestionScreen);
 const styles = StyleSheet.create({
   main: {
     flex: 1,
@@ -229,19 +186,19 @@ const styles = StyleSheet.create({
   },
   detail: {
     flexDirection: "column",
-    width: "96%",
+    alignItems: "center",
+    justifyContent: "center",
   },
   subDetail: {
     elevation: 10,
     alignItems: "center",
-    padding: 13,
-    width: "96%",
     shadowOffset: { width: 10, height: 10 },
     shadowColor: "black",
     shadowOpacity: 1,
     marginTop: 8,
     elevation: 3,
     backgroundColor: "white",
+    padding: 8,
   },
   keyText: {
     fontSize: 14,
@@ -257,7 +214,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontFamily: "HelveticaNowDisplay-ExtraBold",
     color: "#001B33",
-    textAlign: "center",
   },
   tinyText: {
     fontSize: 9,
@@ -265,7 +221,7 @@ const styles = StyleSheet.create({
     color: "#001B33",
   },
   bannerTextStyle: {
-    fontSize: 18,
+    fontSize: 14,
     fontFamily: "HelveticaNowDisplay-ExtraBold",
     color: "#001B33",
     textAlign: "center",
@@ -284,12 +240,13 @@ const styles = StyleSheet.create({
   },
   backText: {
     fontFamily: "HelveticaNowDisplay-Regular",
-    fontSize: 14,
+    fontSize: 12,
     color: "#001B33",
   },
   backTouchable: {
     flexDirection: "row",
     alignItems: "center",
+    marginLeft: 8,
   },
   homeImage: {
     height: 28,

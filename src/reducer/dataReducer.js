@@ -6,6 +6,8 @@ import {
   LOAD_PARTICULAR_ELECTRODE_DATA,
   SET_PAGE_TITLE,
   SET_YOUTUBE_VIDEO_ID,
+  SET_MULTIPLE_METHODS,
+  RESET_MULTIPLE_METHODS,
 } from "../constants/action-types";
 
 const initialState = {
@@ -20,6 +22,8 @@ const initialState = {
   youTubeVideoId: "",
   isDataAvailable: false,
   justFetched: false,
+  multipleMethods: false,
+  electrodeMethods: [""],
 };
 
 function dataReducer(state = initialState, action) {
@@ -72,6 +76,19 @@ function dataReducer(state = initialState, action) {
       youTubeVideoId: action.payload,
     };
   }
+  if (action.type === SET_MULTIPLE_METHODS) {
+    return {
+      ...state,
+      multipleMethods: action.payload["hasMultipleMethods"],
+      electrodeMethods: action.payload["electrodeMethods"],
+    };
+  }
+  if (action.type === RESET_MULTIPLE_METHODS) {
+    return {
+      ...state,
+      multipleMethods: false,
+    };
+  }
 
   return state;
 }
@@ -94,6 +111,19 @@ export const loadParticularElectrodeData = (electrodeArray) => {
   return {
     type: LOAD_PARTICULAR_ELECTRODE_DATA,
     payload: electrodeArray,
+  };
+};
+export const setElectrodeMethodAndHasMultipleMethod = (data) => {
+  // console.log("electrode methods" + data);
+  return {
+    type: SET_MULTIPLE_METHODS,
+    payload: data,
+  };
+};
+export const resetMultipleMethods = () => {
+  return {
+    type: RESET_MULTIPLE_METHODS,
+    payload: false,
   };
 };
 export const setPageTitle = (title) => {

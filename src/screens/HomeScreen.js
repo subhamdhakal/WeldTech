@@ -173,7 +173,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   bannerTextStyle: {
-    marginTop: 38,
+    marginTop: 14,
     fontSize: 18,
     fontFamily: "HelveticaNowDisplay-ExtraBold",
     color: "#001B33",
