@@ -42,11 +42,19 @@ def flipper_post_install(installer)
         config.build_settings['SWIFT_VERSION'] = '4.1'
       end
     end
+    # Enable Flipper for simulators only
+    if target.name.start_with?('Flipper')
+      target.build_configurations.each do |config|
+        config.build_settings['VALID_ARCHS'] = 'arm64 arm64e'
+      end
+    end
   end
 end
 
 target 'weldm8mobile' do
   # Pods for weldm8mobile
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+
   pod 'FBLazyVector', :path => "../node_modules/react-native/Libraries/FBLazyVector"
   pod 'FBReactNativeSpec', :path => "../node_modules/react-native/Libraries/FBReactNativeSpec"
   pod 'RCTRequired', :path => "../node_modules/react-native/Libraries/RCTRequired"
