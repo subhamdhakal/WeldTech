@@ -86,13 +86,13 @@ class CalculatorScreen extends Component {
             flex: 1,
           }}
         >
-          <Image
+          {/* <Image
             style={{
               height: this.state.imgHeight,
               width: this.state.imgWidth,
             }}
             source={require("../assets/icons/weldtech-app-top-banner.png")}
-          />
+          /> */}
           <View style={styles.subComponent}>
             <TouchableWithoutFeedback
               onPress={() => this.props.navigation.pop()}
@@ -129,8 +129,9 @@ class CalculatorScreen extends Component {
 
           <View
             style={{
-              padding: 31,
+              padding: 24,
               width: "100%",
+              marginTop: 48,
             }}
           >
             <View style={{}}>

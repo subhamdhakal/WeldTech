@@ -134,8 +134,8 @@ android {
         applicationId "com.weldm8mobile"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 2+1
-        versionName "2.0+1"
+        versionCode 4
+        versionName "4.0"
     }
     splits {
         abi {
@@ -199,7 +199,9 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
+      implementation project(':react-native-share')
     //noinspection GradleDynamicVersion
+    
     implementation "com.facebook.react:react-native:+"  // From node_modules
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}") {

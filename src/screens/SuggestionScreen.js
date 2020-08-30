@@ -12,20 +12,56 @@ import {
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import Icon from "react-native-vector-icons/FontAwesome";
-import { NavigationContainer } from "@react-navigation/native";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 
 function TabScreen(props) {
   return (
-    <FlatList
-      data={props.data["descriptions"]}
-      renderItem={({ item, index }) => (
-        <View style={styles.subDetail}>
-          <Text style={styles.keyText}>{item.title}</Text>
-          <Text style={styles.valueText}>{item.detail}</Text>
-        </View>
-      )}
-    />
+    <View style={{ paddingBottom: 40 }}>
+      <FlatList
+        data={props.data["descriptions"]}
+        renderItem={({ item, index }) => (
+          <View style={styles.subDetail}>
+            <Text style={styles.keyText}>{item.title} :</Text>
+            <Text style={styles.valueText}>{item.detail}</Text>
+            {item.imageUrl == null ? (
+              <View />
+            ) : (
+              <Image
+                style={{
+                  height: 90,
+                  width: 140,
+                  resizeMode: "contain",
+                  justifyContent: "center",
+                  alignSelf: "center",
+                }}
+                source={{
+                  uri: item.imageUrl,
+                }}
+              />
+            )}
+          </View>
+        )}
+      />
+      <View
+        style={{
+          justifyContent: "center",
+          alignContent: "center",
+          alignItems: "center",
+          margin: 8,
+        }}
+      >
+        <Text
+          style={{
+            textAlign: "center",
+            fontFamily: "HelveticaNowDisplay-Regular",
+            fontSize: 10,
+          }}
+        >
+          All suggested settings are approximate. Welds should be tested to
+          comply to your specifications.
+        </Text>
+      </View>
+    </View>
   );
 }
 
@@ -52,8 +88,24 @@ class SuggestionScreen extends Component {
   }
   renderItem = (item) => (
     <View style={styles.subDetail}>
-      <Text style={styles.keyText}>{item.title}</Text>
+      <Text style={styles.keyText}>{item.title} :</Text>
       <Text style={styles.valueText}>{item.detail}</Text>
+      {item.imageUrl == null ? (
+        <View />
+      ) : (
+        <Image
+          style={{
+            height: 90,
+            width: 140,
+            resizeMode: "contain",
+            justifyContent: "center",
+            alignSelf: "center",
+          }}
+          source={{
+            uri: item.imageUrl,
+          }}
+        />
+      )}
     </View>
   );
   render() {
@@ -133,7 +185,19 @@ class SuggestionScreen extends Component {
             </View>
           </View>
         ) : (
-          <Tab.Navigator>
+          <Tab.Navigator
+            tabBarOptions={{
+              activeTintColor: "#001B33",
+              inactiveTintColor: "gray",
+              indicatorStyle: {
+                backgroundColor: "#001B33",
+              },
+
+              labelStyle: {
+                fontFamily: "HelveticaNowDisplay-Regular",
+              },
+            }}
+          >
             <Tab.Screen
               name={this.props.electrodeMethods[0]["methodName"]}
               children={() => (
@@ -171,7 +235,6 @@ export default connect(mapStateToProps, mapDispatchToProps)(SuggestionScreen);
 const styles = StyleSheet.create({
   main: {
     flex: 1,
-    alignContent: "center",
   },
   subComponent: {
     backgroundColor: "#FEE203",
@@ -185,16 +248,16 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
   },
   detail: {
-    flexDirection: "column",
-    alignItems: "center",
     justifyContent: "center",
+    paddingBottom: 90,
   },
   subDetail: {
     elevation: 10,
-    alignItems: "center",
     shadowOffset: { width: 10, height: 10 },
     shadowColor: "black",
     shadowOpacity: 1,
+    marginLeft: 8,
+    marginRight: 8,
     marginTop: 8,
     elevation: 3,
     backgroundColor: "white",
@@ -204,6 +267,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontFamily: "HelveticaNowDisplay-Bold",
     color: "#001B33",
+    flexWrap: "wrap",
   },
   valueTextNoWidth: {
     fontSize: 18,
@@ -214,6 +278,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontFamily: "HelveticaNowDisplay-ExtraBold",
     color: "#001B33",
+    flexWrap: "wrap",
   },
   tinyText: {
     fontSize: 9,
@@ -246,7 +311,6 @@ const styles = StyleSheet.create({
   backTouchable: {
     flexDirection: "row",
     alignItems: "center",
-    marginLeft: 8,
   },
   homeImage: {
     height: 28,

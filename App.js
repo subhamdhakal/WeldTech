@@ -1,19 +1,13 @@
-import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View, Image, Share } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from "./src/screens/HomeScreen";
 import { NavigationContainer } from "@react-navigation/native";
-import Icon from "react-native-vector-icons/FontAwesome";
-import FacebookScreen from "./src/screens/FacebookScreen";
 import YouTubeScreen from "./src/screens/YoutubeScreen";
-import TwitterScreen from "./src/screens/TwitterScreen";
+import ShareScreen from "./src/screens/ShareScreen";
 import { createStackNavigator } from "@react-navigation/stack";
 import CalculatorScreen from "./src/screens/CalculatorScreen";
-import ScreenChooseThickness from "./src/screens/ScreenChooseThickness";
-import { render } from "react-dom";
 import SuggestionScreen from "./src/screens/SuggestionScreen";
-import { Header } from "react-native/Libraries/NewAppScreen";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/es/integration/react";
 import { store, persistor } from "../WeldM8/src/store/store";
@@ -77,8 +71,7 @@ function TabNavigationScreens() {
     >
       <Tab.Screen name="HOME" component={HomeScreen} />
       <Tab.Screen name="VIDEOS" component={YouTubeScreen} />
-      <Tab.Screen name="SETTINGS" component={FacebookScreen} />
-      <Tab.Screen name="SHARE" component={TwitterScreen} />
+      <Tab.Screen name="SHARE" component={ShareScreen} />
     </Tab.Navigator>
   );
 }

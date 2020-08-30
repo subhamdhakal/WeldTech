@@ -2,6 +2,7 @@ import {
   DATA_LOADED,
   TOGGLE_DATA_STATUS,
   DATE_LOADED,
+  IMAGE_URLS_LOADED,
   LOAD_PARTICULAR_WELDING_DATA,
   LOAD_PARTICULAR_ELECTRODE_DATA,
   SET_PAGE_TITLE,
@@ -24,6 +25,7 @@ const initialState = {
   justFetched: false,
   multipleMethods: false,
   electrodeMethods: [""],
+  urlOfImages: [""],
 };
 
 function dataReducer(state = initialState, action) {
@@ -35,6 +37,13 @@ function dataReducer(state = initialState, action) {
       isDataAvailable: true,
       dataStatus: true,
       justFetched: true,
+    };
+  }
+  if (action.type === IMAGE_URLS_LOADED) {
+    // console.log("data in data reducer" + action.payload);
+    return {
+      ...state,
+      urlOfImages: action.payload,
     };
   }
   if (action.type === TOGGLE_DATA_STATUS) {
@@ -97,6 +106,14 @@ export const dataAvailable = (data) => {
   console.log("yeta ayo");
   return {
     type: DATA_LOADED,
+    payload: data,
+  };
+};
+
+export const setImageUrl = (data) => {
+  console.log("list of images available");
+  return {
+    type: IMAGE_URLS_LOADED,
     payload: data,
   };
 };

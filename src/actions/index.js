@@ -5,7 +5,7 @@ import {
   loginSuccessful,
   loginFailed,
 } from "../reducer/loginReducer";
-import { dataAvailable, putDate } from "../reducer/dataReducer";
+import { dataAvailable, putDate, setImageUrl } from "../reducer/dataReducer";
 
 export const callPostsApi = (token) => {
   return axios
@@ -13,7 +13,6 @@ export const callPostsApi = (token) => {
       headers: { Authorization: `Bearer ${token}` },
     })
     .then((response) => {
-      // console.log("khali", response.data);
       return response;
     })
     .catch((err) => console.log(err));
@@ -36,23 +35,17 @@ export const login = (username, password, rememberMe = false) => {
 
         return callPostsApi(response.data).then(
           (response) => {
-            // console.log("khali chaina aba", response.data);
             const endTime = new Date().getTime();
             const runtime = endTime - startTime;
-            // var time = new Date().getTime();
             var date = new Date();
-            console.log("run time ################# " + date.toString());
             dispatch(putDate(date.toLocaleString("en-US")));
-            dispatch(dataAvailable(response.data));
-            // Reducers may handle this to show the data and reset isFetching
+            dispatch(setImageUrl(response.data["imageUrls"]));
+            dispatch(dataAvailable(response.data["categoryData"]));
           },
           (error) => {
-            // Reducers may handle this to reset isFetching
-            // Rethrow so returned Promise is rejected
             throw error;
           }
         ); // dispatch(loginSuccessful(response.data["users"]));
-        // dispatch(NavigationService.navigate("DashBoard"));
       })
       .catch((err) => dispatch(loginFailed(err)));
   };

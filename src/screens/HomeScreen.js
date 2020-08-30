@@ -18,8 +18,9 @@ import {
   setPageTitle,
 } from "../reducer/dataReducer";
 import { FlatList } from "react-native-gesture-handler";
-// import NetInfo from "@react-native-community/netinfo";
+import NetInfo from "@react-native-community/netinfo";
 
+let preFetchTasks = [];
 class HomeScreen extends Component {
   constructor(props) {
     super(props);
@@ -27,21 +28,21 @@ class HomeScreen extends Component {
       imgWidth: 0,
       imgHeight: 0,
     };
-    // this.unsubscribe = NetInfo.addEventListener((state) => {
-    //   if (!this.props.justFetched) {
-    //     state.isInternetReachable
-    //       ? this.props.actions.login("weldm8-superadmin", "User@123!@#")
-    //       : console.log("no internet in homescreen");
-    //   }
-    // });
+    this.unsubscribe = NetInfo.addEventListener((state) => {
+      if (!this.props.justFetched) {
+        state.isInternetReachable
+          ? this.props.actions.login("weldm8-superadmin", "User@123!@#")
+          : console.log("no internet in homescreen");
+      }
+    });
   }
-  // componentWillUnmount() {
-  //   this.unsubscribe();
-  // }
+  componentWillUnmount() {
+    this.unsubscribe();
+  }
 
   componentDidMount() {
     console.log("App loaded");
-    // this.props.actions.login("weldm8-superadmin", "User@123!@#");
+    this.props.actions.login("weldm8-superadmin", "User@123!@#");
 
     this.props.actions.changeDataStatus();
 
@@ -55,6 +56,18 @@ class HomeScreen extends Component {
     this.setState({
       imgWidth: screenWidth,
       imgHeight: imageHeight,
+    });
+    this.props.urlOfImages.forEach((p) => {
+      preFetchTasks.push(Image.prefetch(p));
+    });
+    Promise.all(preFetchTasks).then((results) => {
+      let downloadedAll = true;
+      results.forEach((result) => {
+        if (!result) {
+          //error occurred downloading a pic
+          downloadedAll = false;
+        }
+      });
     });
   }
 
@@ -151,6 +164,7 @@ class HomeScreen extends Component {
 const mapStateToProps = (state) => {
   return {
     syncDate: state.dataReducer.syncDate,
+    urlOfImages: state.dataReducer.urlOfImages,
     data: state.dataReducer.data,
     justFetched: state.dataReducer.justFetched,
   };

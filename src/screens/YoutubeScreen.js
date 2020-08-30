@@ -8,10 +8,13 @@ import {
   Text,
   View,
 } from "react-native";
+import YouTube from "react-native-youtube";
+
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { loadParticularElectrodeData } from "../reducer/dataReducer";
 import { setYoutubeVideoId } from "./../reducer/dataReducer";
+import NetInfo from "@react-native-community/netinfo";
 
 const apiKey = "AIzaSyD3Ejf86Vrr46AyTTTCsDe1rMfElLiMV3Q";
 const channelId = "UCX4aRuKMiD30ofSjpAibbNA";
@@ -20,65 +23,93 @@ class YouTubeScreen extends Component {
     super(props);
     this.state = {
       data: [],
+      internetStatus: true,
     };
-  }
-  // `https://www.googleapis.com/youtube/v3/search/?key=${apiKey}&channelId=${channelId}&part=snippet,id&order=date`
-
-  componentDidMount() {
-    fetch(
-      "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet%2CcontentDetails&maxResults=50&playlistId=PLwL_LDhxUpcDlHu-bkZnhUohcIFduflQM&key=AIzaSyD3Ejf86Vrr46AyTTTCsDe1rMfElLiMV3Q"
-    )
-      .then((res) => res.json())
-      .then((res) => {
-        const videoId = [];
-        res.items.forEach((item) => {
-          videoId.push(item);
-        });
-        this.setState({
-          data: videoId,
-        });
-      })
-      .catch((error) => {
-        console.error(error);
+    this.unsubscribe = NetInfo.addEventListener((state) => {
+      this.setState({
+        internetStatus: state.isInternetReachable,
       });
+      state.isInternetReachable
+        ? fetch(
+            "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet%2CcontentDetails&maxResults=50&playlistId=PLwL_LDhxUpcDlHu-bkZnhUohcIFduflQM&key=AIzaSyD3Ejf86Vrr46AyTTTCsDe1rMfElLiMV3Q"
+          )
+            .then((res) => res.json())
+            .then((res) => {
+              console.log(JSON.stringify(res));
+              const videoId = [];
+              res.items.forEach((item) => {
+                videoId.push(item);
+              });
+              this.setState({
+                data: videoId,
+                internetStatus: true,
+              });
+            })
+            .catch((error) => {
+              console.error(error);
+            })
+        : this.setState({
+            internetStatus: false,
+          });
+    });
   }
+  componentWillUnmount() {
+    this.unsubscribe();
+  }
+
+  componentDidMount() {}
 
   render() {
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
-        <ScrollView>
-          <View style={styles.body}>
-            {this.state.data.map((item, i) => (
-              <TouchableHighlight
-                key={item.id.videoId}
-                onPress={() => {
-                  this.props.actions.setYoutubeVideoId(item.id.videoId),
-                    this.props.navigation.navigate("PlayerScreen");
-                }}
-              >
-                <View style={styles.vids}>
-                  <Image
-                    source={{ uri: item.snippet.thumbnails.medium.url }}
-                    style={{ width: 320, height: 180 }}
-                  />
-                  <View style={styles.vidItems}>
-                    {/* <Image
-                      source={require("./images/NightKing.jpg")}
-                      style={{
-                        width: 40,
-                        height: 40,
-                        borderRadius: 20,
-                        marginRight: 5,
-                      }}
-                    /> */}
-                    <Text style={styles.vidText}>{item.snippet.title}</Text>
+        {this.state.internetStatus ? (
+          <ScrollView>
+            <View style={styles.body}>
+              {this.state.data.map((item, i) => (
+                <TouchableHighlight
+                  key={item.videoId}
+                  onPress={() => {
+                    this.props.actions.setYoutubeVideoId(
+                      item.contentDetails.videoId
+                    ),
+                      this.props.navigation.navigate("PlayerScreen");
+                  }}
+                >
+                  <View style={styles.vids}>
+                    <Image
+                      source={{ uri: item.snippet.thumbnails.medium.url }}
+                      style={{ width: 128, height: 72 }}
+                    />
+                    <Text textBreakStrategy={"simple"} style={styles.vidText}>
+                      {item.snippet.title}
+                    </Text>
                   </View>
-                </View>
-              </TouchableHighlight>
-            ))}
+                </TouchableHighlight>
+              ))}
+            </View>
+          </ScrollView>
+        ) : (
+          <View
+            style={{
+              backgroundColor: "#BF0E0E",
+              width: "100%",
+              justifyContent: "center",
+              alignItems: "center",
+              height: 25,
+            }}
+          >
+            <Text
+              style={{
+                color: "white",
+                fontFamily: "HelveticaNowDisplay-Regular",
+                fontSize: 12,
+              }}
+            >
+              No internet connection
+            </Text>
           </View>
-        </ScrollView>
+        )}
       </View>
     );
   }
@@ -105,29 +136,29 @@ const styles = StyleSheet.create({
   body: {
     flex: 1,
     backgroundColor: "#fff",
-    alignItems: "center",
-    padding: 30,
+    padding: 8,
   },
   vids: {
-    paddingBottom: 30,
-    width: 320,
-    alignItems: "center",
     backgroundColor: "#fff",
-    justifyContent: "center",
-    borderBottomWidth: 0.6,
     borderColor: "#aaa",
+    flexDirection: "row",
+    padding: 8,
+    elevation: 10,
+    shadowOffset: { width: 10, height: 10 },
+    shadowColor: "black",
+    shadowOpacity: 1,
+    margin: 2,
   },
   vidItems: {
     flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-around",
     padding: 10,
   },
   vidText: {
-    padding: 20,
-    fontFamily: "HelveticaNowDisplay-Regular",
-    fontSize: 14,
+    fontFamily: "HelveticaNowDisplay-ExtraBold",
+    fontSize: 16,
+    padding: 8,
     color: "#001B33",
+    flex: 1,
   },
   tabBar: {
     backgroundColor: "#fff",
