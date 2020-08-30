@@ -153,10 +153,10 @@ class HomeScreen extends Component {
           </View>
           <Text style={styles.bannerTextStyle}>WELD SETTING CALCULATOR</Text>
         </View>
-        <FlatList
+        {/* <FlatList
           data={this.props.data}
           renderItem={({ item, index }) => this.renderItem(item)}
-        />
+        /> */}
       </View>
     );
   }

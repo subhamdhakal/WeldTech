@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View, Image, Share } from "react-native";
+import { StyleSheet, Text, View, Image, SafeAreaView } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from "./src/screens/HomeScreen";
 import { NavigationContainer } from "@react-navigation/native";
@@ -10,7 +10,7 @@ import CalculatorScreen from "./src/screens/CalculatorScreen";
 import SuggestionScreen from "./src/screens/SuggestionScreen";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/es/integration/react";
-import { store, persistor } from "../WeldM8/src/store/store";
+import { store, persistor } from "./src/store/store";
 import SplashScreen from "./src/screens/SplashScreen";
 import PlayerScreen from "./src/screens/PlayerScreen";
 
@@ -77,33 +77,35 @@ function TabNavigationScreens() {
 }
 export default function App() {
   return (
-    <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <NavigationContainer>
-          <MainStack.Navigator
-            screenOptions={{
-              headerShown: false,
-            }}
-          >
-            <MainStack.Screen name="SplashScreen" component={SplashScreen} />
+    <SafeAreaView style={{ flex: 1 }}>
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <NavigationContainer>
+            <MainStack.Navigator
+              screenOptions={{
+                headerShown: false,
+              }}
+            >
+              <MainStack.Screen name="SplashScreen" component={SplashScreen} />
 
-            <MainStack.Screen
-              name="HomeScreen"
-              component={TabNavigationScreens}
-            />
-            <MainStack.Screen
-              name="CalculatorScreen"
-              component={CalculatorScreen}
-            />
-            <MainStack.Screen
-              name="SuggestionScreen"
-              component={SuggestionScreen}
-            />
-            <MainStack.Screen name="PlayerScreen" component={PlayerScreen} />
-          </MainStack.Navigator>
-        </NavigationContainer>
-      </PersistGate>
-    </Provider>
+              <MainStack.Screen
+                name="HomeScreen"
+                component={TabNavigationScreens}
+              />
+              <MainStack.Screen
+                name="CalculatorScreen"
+                component={CalculatorScreen}
+              />
+              <MainStack.Screen
+                name="SuggestionScreen"
+                component={SuggestionScreen}
+              />
+              <MainStack.Screen name="PlayerScreen" component={PlayerScreen} />
+            </MainStack.Navigator>
+          </NavigationContainer>
+        </PersistGate>
+      </Provider>
+    </SafeAreaView>
   );
 }
 
